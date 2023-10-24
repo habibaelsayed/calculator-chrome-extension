@@ -56,13 +56,19 @@ let calculate = function(text) {
 
     for(let i = 0; i < text.length; i++){
         let token = text[i];
-
         if(token == ' ') continue;
 
         if(!isNaN(token)){
+
             let num = parseFloat(token);
+            if(i == 1 && text[0] == '-')
+            {
+                operators.pop();
+                num *= -1;
+            }
             while(!isNaN(text[i+1]) && i+1 < text.length)
             {
+
                 num = num * 10 + parseFloat(text[i+1]);
                 i++;
             }
